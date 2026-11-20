@@ -1,25 +1,82 @@
 plugins { id 'com.android.application' }
 
+// Private signing material is read from this machine, never from source control.
+def signingPath = providers.gradleProperty('residualSigningProperties')
+    .orElse(providers.environmentVariable('RESIDUAL_SIGNING_PROPERTIES'))
+    .getOrElse("${System.getProperty('user.home')}/Documents/Residual/assinatura-android/release.properties")
+def signingFile = file(signingPath)
+def releaseCredentials = new Properties()
+if (signingFile.isFile()) {
+    signingFile.withInputStream { releaseCredentials.load(it) }
+}
+
 android {
-    namespace 'br.com.residual.mobile.preview'
+    namespace 'br.com.residual.app'
     compileSdk 36
+    testBuildType 'release'
 
     defaultConfig {
-        applicationId 'br.com.residual.mobile.preview'
+        applicationId 'br.com.residual.app'
         minSdk 26
         targetSdk 36
         versionCode 1
-        versionName '0.1.0-preview'
+        versionName '1.0.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+    signingConfigs {
+        release {
+            if (signingFile.isFile()) {
+                storeFile file(releaseCredentials.getProperty('storeFile'))
+                storePassword releaseCredentials.getProperty('storePassword')
+                keyAlias releaseCredentials.getProperty('keyAlias')
+                keyPassword releaseCredentials.getProperty('keyPassword')
+                storeType releaseCredentials.getProperty('storeType', 'PKCS12')
+            }
+        }
+    }
     buildTypes {
-        debug { debuggable false }
-        release { minifyEnabled false }
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-dev'
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+}
+
+def validateResidualSigning = tasks.register('validateResidualSigning') {
+    doLast {
+        if (!signingFile.isFile()) {
+            throw new GradleException('Configure RESIDUAL_SIGNING_PROPERTIES com o arquivo privado release.properties para gerar o APK de produção.')
+        }
+        ['storeFile', 'storePassword', 'keyAlias', 'keyPassword'].each { name ->
+            if (!releaseCredentials.getProperty(name)) {
+                throw new GradleException("Propriedade de assinatura ausente: ${name}")
+            }
+        }
+        def keyStore = java.security.KeyStore.getInstance(releaseCredentials.getProperty('storeType', 'PKCS12'))
+        file(releaseCredentials.getProperty('storeFile')).withInputStream { stream ->
+            keyStore.load(stream, releaseCredentials.getProperty('storePassword').toCharArray())
+        }
+        def certificate = keyStore.getCertificate(releaseCredentials.getProperty('keyAlias'))
+        if (certificate == null) {
+            throw new GradleException('Alias da chave de assinatura não encontrado.')
+        }
+        def digest = java.security.MessageDigest.getInstance('SHA-256')
+            .digest(certificate.encoded).encodeHex().toString()
+        if (digest != file('signing-certificate.sha256').text.trim()) {
+            throw new GradleException('O certificado difere da assinatura definitiva do Residual. Recupere a chave original antes de publicar uma atualização.')
+        }
+    }
+}
+tasks.matching { it.name in ['validateSigningRelease', 'packageRelease', 'bundleRelease'] }.configureEach {
+    dependsOn validateResidualSigning
 }
 
 dependencies {

@@ -1,4 +1,4 @@
-package br.com.residual.mobile.preview;
+package br.com.residual.app;
 
 import android.view.View;
 import android.view.ViewGroup;

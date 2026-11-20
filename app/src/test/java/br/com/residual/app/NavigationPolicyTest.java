@@ -1,4 +1,4 @@
-package br.com.residual.mobile.preview;
+package br.com.residual.app;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

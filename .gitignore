@@ -3,6 +3,10 @@
 local.properties
 *.jks
 *.keystore
+*.p12
+*.pfx
+*signing*.properties
+release.properties
 *.local
 .DS_Store
 artifacts/

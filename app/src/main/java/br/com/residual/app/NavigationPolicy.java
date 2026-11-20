@@ -1,4 +1,4 @@
-package br.com.residual.mobile.preview;
+package br.com.residual.app;
 
 import java.net.URI;
 import java.net.URISyntaxException;
