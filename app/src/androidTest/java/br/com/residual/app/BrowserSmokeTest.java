@@ -54,7 +54,7 @@ public class BrowserSmokeTest {
         try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
             awaitLogin(scenario);
             String url = js(scenario, "window.location.href");
-            assertTrue(url.contains("https://residual.hotelrovi-ponto.workers.dev/"));
+            assertTrue(url.contains("https://residual.verticedg.workers.dev/"));
             assertEquals("true", js(scenario, "document.querySelector('input[type=email]')!==null"));
             assertEquals("true", js(scenario, "document.body.innerText.includes('Entrar')"));
             scenario.onActivity(activity -> assertFalse(findWeb(activity.getWindow().getDecorView()).getSettings().getAllowFileAccess()));

@@ -15,10 +15,10 @@ public class NavigationPolicyTest {
         assertFalse(NavigationPolicy.isInternal("https://ragcodebr.github.io.evil.test/sistema-residual/"));
         assertFalse(NavigationPolicy.isInternal("https://evil.test@ragcodebr.github.io/sistema-residual/"));
         assertFalse(NavigationPolicy.isInternal("https://ragcodebr.github.io:8443/sistema-residual/"));
-        assertFalse(NavigationPolicy.isInternal("https://another.hotelrovi-ponto.workers.dev/"));
-        assertFalse(NavigationPolicy.isInternal("https://residual.hotelrovi-ponto.workers.dev.evil.test/"));
-        assertFalse(NavigationPolicy.isInternal("https://evil.test@residual.hotelrovi-ponto.workers.dev/"));
-        assertFalse(NavigationPolicy.isInternal("https://residual.hotelrovi-ponto.workers.dev:8443/"));
+        assertFalse(NavigationPolicy.isInternal("https://another.verticedg.workers.dev/"));
+        assertFalse(NavigationPolicy.isInternal("https://residual.verticedg.workers.dev.evil.test/"));
+        assertFalse(NavigationPolicy.isInternal("https://evil.test@residual.verticedg.workers.dev/"));
+        assertFalse(NavigationPolicy.isInternal("https://residual.verticedg.workers.dev:8443/"));
     }
     @Test public void rejectsUnsafeProtocols() {
         for (String url : new String[] {"javascript:alert(1)", "file:///data/secret", "content://private", "http://ragcodebr.github.io/sistema-residual/", null}) {

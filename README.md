@@ -2,7 +2,7 @@
 
 Projeto independente do sistema web. Não altera o repositório compartilhado, o GitHub Pages nem a estrutura do Supabase.
 
-O APK abre `https://residual.hotelrovi-ponto.workers.dev/` em uma WebView Android. Usa o login existente, mantém a sessão no armazenamento privado do aplicativo e oferece seleção de anexos e salvamento de downloads. Links externos abrem em outro aplicativo. Não contém chaves do Supabase nem credenciais de usuários.
+O APK abre `https://residual.verticedg.workers.dev/` em uma WebView Android. Usa o login existente, mantém a sessão no armazenamento privado do aplicativo e oferece seleção de anexos e salvamento de downloads. Links externos abrem em outro aplicativo. Não contém chaves do Supabase nem credenciais de usuários.
 
 Nome: **Residual**. Identificador definitivo: **`br.com.residual.app`**. A versão 1.0.0 tem `versionCode=1` e usa uma chave de assinatura de produção, distinta da chave de desenvolvimento da prévia.
 

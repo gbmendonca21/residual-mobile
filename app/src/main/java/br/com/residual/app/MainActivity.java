@@ -178,7 +178,7 @@ public final class MainActivity extends ComponentActivity {
         boolean bridgeAvailable = WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER);
         if (WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) {
             WebViewCompat.addWebMessageListener(web, "ResidualDownloads",
-                Collections.singleton("https://residual.hotelrovi-ponto.workers.dev"), (view, message, origin, mainFrame, reply) -> {
+                Collections.singleton("https://residual.verticedg.workers.dev"), (view, message, origin, mainFrame, reply) -> {
                     if (!mainFrame || !NavigationPolicy.isInternal(view.getUrl())) return;
                     String raw = message.getData();
                     if (raw == null || raw.length() > NavigationPolicy.MAX_BLOB_BYTES * 4L / 3 + 8192) return;
