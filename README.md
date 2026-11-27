@@ -2,13 +2,13 @@
 
 Projeto independente do sistema web. Não altera o repositório compartilhado, o GitHub Pages nem a estrutura do Supabase.
 
-O APK abre `https://ragcodebr.github.io/sistema-residual/` em uma WebView Android. Usa o login existente, mantém a sessão no armazenamento privado do aplicativo e oferece seleção de anexos e salvamento de downloads. Links externos abrem em outro aplicativo. Não contém chaves do Supabase nem credenciais de usuários.
+O APK abre `https://residual.hotelrovi-ponto.workers.dev/` em uma WebView Android. Usa o login existente, mantém a sessão no armazenamento privado do aplicativo e oferece seleção de anexos e salvamento de downloads. Links externos abrem em outro aplicativo. Não contém chaves do Supabase nem credenciais de usuários.
 
 Nome: **Residual**. Identificador definitivo: **`br.com.residual.app`**. A versão 1.0.0 tem `versionCode=1` e usa uma chave de assinatura de produção, distinta da chave de desenvolvimento da prévia.
 
 ## Instalar e compartilhar
 
-Baixe o APK 1.0.0 nos [Releases](https://github.com/gbmendonca21/residual-mobile/releases). Compartilhe apenas o link do APK com os colaboradores. No Android, abra o arquivo baixado e permita a instalação pelo navegador quando o sistema solicitar. Entre com a mesma conta usada no site.
+Baixe o APK atual nos [Releases](https://github.com/gbmendonca21/residual-mobile/releases). Compartilhe apenas o link do APK com os colaboradores. No Android, abra o arquivo baixado e permita a instalação pelo navegador quando o sistema solicitar. Entre com a mesma conta usada no site.
 
 A versão definitiva é uma instalação separada da prévia `Residual · Teste`. Ela não migra a sessão da prévia; faça login novamente. Depois de validar o acesso, a prévia pode ser desinstalada.
 

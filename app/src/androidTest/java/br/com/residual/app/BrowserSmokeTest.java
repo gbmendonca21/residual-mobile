@@ -54,14 +54,14 @@ public class BrowserSmokeTest {
         try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
             awaitLogin(scenario);
             String url = js(scenario, "window.location.href");
-            assertTrue(url.contains("https://ragcodebr.github.io/sistema-residual/"));
+            assertTrue(url.contains("https://residual.hotelrovi-ponto.workers.dev/"));
             assertEquals("true", js(scenario, "document.querySelector('input[type=email]')!==null"));
             assertEquals("true", js(scenario, "document.body.innerText.includes('Entrar')"));
             scenario.onActivity(activity -> assertFalse(findWeb(activity.getWindow().getDecorView()).getSettings().getAllowFileAccess()));
             scenario.onActivity(activity -> findWeb(activity.getWindow().getDecorView()).reload());
             awaitLogin(scenario);
             UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-            assertFalse("GitHub Pages fallback must not show a network error", device.hasObject(By.textContains("Não foi possível abrir o Residual")));
+            assertFalse("Reloaded route must not show a network error", device.hasObject(By.textContains("Não foi possível abrir o Residual")));
         }
     }
 

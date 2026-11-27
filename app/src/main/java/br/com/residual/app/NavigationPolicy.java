@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 
 /** The embedded browser stays within the published Residual application. */
 final class NavigationPolicy {
-    static final String HOME = "https://ragcodebr.github.io/sistema-residual/";
+    static final String HOME = "https://residual.hotelrovi-ponto.workers.dev/";
     static final int MAX_BLOB_BYTES = 20 * 1024 * 1024;
     static final int MAX_DOWNLOAD_BYTES = 100 * 1024 * 1024;
 
@@ -14,11 +14,11 @@ final class NavigationPolicy {
             URI uri = new URI(value);
             String path = uri.normalize().getPath();
             return "https".equalsIgnoreCase(uri.getScheme())
-                && "ragcodebr.github.io".equalsIgnoreCase(uri.getHost())
+                && "residual.hotelrovi-ponto.workers.dev".equalsIgnoreCase(uri.getHost())
                 && uri.getRawUserInfo() == null
                 && (uri.getPort() == -1 || uri.getPort() == 443)
                 && path != null
-                && path.startsWith("/sistema-residual/");
+                && path.startsWith("/");
         } catch (URISyntaxException | NullPointerException error) {
             return false;
         }
